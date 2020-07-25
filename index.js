@@ -1,13 +1,18 @@
+//requiring built in node packages
 const fs = require("fs");
 const util = require("util");
+//requiring the inquirer package
 const inquirer = require("inquirer");
 
+//promisifying the fs writeFile function
 const writeFileAsync = util.promisify(fs.writeFile);
 
+//calling the function thats declared below this line
 generateReadMe ();
 
 async function generateReadMe() {
     try {
+        //prompting the user with a series of questions
         const info = await inquirer.prompt([
         {
             message: "Please enter the title of your project:",
@@ -48,10 +53,14 @@ async function generateReadMe() {
             choices: ["Apache2.0", "MIT", "GPL", "None"]
         }
     ]);
+    //logging out the received information
     console.log(info);
 
+    //using object destructuring to access the received information as variable
     const {title, description, install, usage, contribute, test, hubName, email, license} = info;
 
+    /*writes a professional readme using the provided information in a 
+        file named userREADME.md (first run creates the file, subsequent runs overwrite it)*/
     await writeFileAsync("userREADME.md", 
 `# ${title}  &nbsp;&nbsp;&nbsp; ![image](https://img.shields.io/badge/license-${license}-blueviolet)
     
