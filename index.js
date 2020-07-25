@@ -7,8 +7,8 @@ const inquirer = require("inquirer");
 //promisifying the fs writeFile function
 const writeFileAsync = util.promisify(fs.writeFile);
 
-//calling the function thats declared below this line
-generateReadMe ();
+//calling the function that's declared below this line
+generateReadMe();
 
 async function generateReadMe() {
     try {
@@ -56,7 +56,7 @@ async function generateReadMe() {
     //logging out the received information
     console.log(info);
 
-    //using object destructuring to access the received information as variable
+    //using object destructuring to access the received information as variables
     const {title, description, install, usage, contribute, test, hubName, email, license} = info;
 
     /*writes a professional readme using the provided information in a 
